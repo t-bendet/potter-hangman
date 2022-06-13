@@ -35,7 +35,7 @@ const Modal = () => {
 
 function App() {
   return (
-    <div className="flex h-screen flex-col justify-center items-center bg-sky-700">
+    <div className="flex h-screen w-screen flex-col justify-center items-center bg-sky-700">
       {false && Modal}
       <GameBoard />
     </div>
