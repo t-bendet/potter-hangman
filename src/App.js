@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Card from "./ui/Card";
 import GameBoard from "./components/GameBoard";
 
@@ -35,10 +36,10 @@ const Modal = () => {
 
 function App() {
   return (
-    <div className="flex h-screen w-screen flex-col justify-center items-center bg-sky-700">
+    <Fragment>
       {false && Modal}
       <GameBoard />
-    </div>
+    </Fragment>
   );
 }
 
