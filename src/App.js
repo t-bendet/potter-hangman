@@ -1,6 +1,6 @@
-import { Fragment } from "react";
 import Card from "./ui/Card";
 import GameBoard from "./components/GameBoard";
+import classes from "./app.module.css";
 
 const Modal = () => {
   return (
@@ -36,10 +36,10 @@ const Modal = () => {
 
 function App() {
   return (
-    <Fragment>
-      {false && Modal}
-      <GameBoard />
-    </Fragment>
+    <div className={classes.app}>
+      {false && <Modal />}
+      {true && <GameBoard />}
+    </div>
   );
 }
 

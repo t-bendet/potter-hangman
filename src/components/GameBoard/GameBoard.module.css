@@ -1,0 +1,3 @@
+.board {
+  composes: container from "../../app.module.css";
+}

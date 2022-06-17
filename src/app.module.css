@@ -1,0 +1,20 @@
+.app {
+  background-color: turquoise;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  box-sizing: border-box;
+  background-color: brown;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 90%;
+  width: 90%;
+  min-width: fit-content;
+  border-radius: 15px;
+}
