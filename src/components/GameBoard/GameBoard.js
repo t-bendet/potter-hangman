@@ -6,7 +6,7 @@ import classes from "./GameBoard.module.css";
 
 const GameBoard = () => {
   return (
-    <div className={classes.board}>
+    <div className={classes.container}>
       <Panel>
         <GameBoardAnimation></GameBoardAnimation>
       </Panel>

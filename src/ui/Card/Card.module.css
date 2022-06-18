@@ -3,8 +3,6 @@
   border-radius: 6px;
   background-color: whitesmoke;
   padding: 1rem;
-  width: 90%;
-  max-width: 40rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

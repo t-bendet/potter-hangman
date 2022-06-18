@@ -81,4 +81,6 @@ const GameBoardPlay = () => {
   );
 };
 
+// TODO  tile should be a component
+
 export default GameBoardPlay;

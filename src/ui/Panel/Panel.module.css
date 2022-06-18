@@ -3,10 +3,6 @@
   margin: 1rem auto;
   border-radius: 6px;
   padding: 2rem;
-  width: fit-content;
-  max-width: 40rem;
-  min-width: 20rem;
-  min-height: 25rem;
   display: flex;
   flex-direction: column;
   align-items: center;

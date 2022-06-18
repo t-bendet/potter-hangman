@@ -1,3 +1,9 @@
-.board {
-  composes: container from "../../app.module.css";
+.container {
+  box-sizing: border-box;
+  background-color: brown;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border-radius: 15px;
 }
