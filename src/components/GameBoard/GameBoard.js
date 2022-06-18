@@ -11,7 +11,10 @@ const GameBoard = () => {
         <GameBoardAnimation></GameBoardAnimation>
       </Panel>
       <Panel>
-        <GameBoardPlay></GameBoardPlay>
+        <GameBoardPlay
+          category="Characters"
+          secretWord="Harry Potter"
+        ></GameBoardPlay>
       </Panel>
     </div>
   );

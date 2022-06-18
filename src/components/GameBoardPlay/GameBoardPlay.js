@@ -1,8 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Card from "../../ui/Card";
+import Tile from "../Tile";
 import classes from "./GameBoardPlay.module.css";
 
-const arr = [
+const lettersBox = [
   "A",
   "B",
   "C",
@@ -57,17 +58,38 @@ const arr = [
   "z",
 ];
 
-const GameBoardPlay = () => {
+const GameBoardPlay = ({ category, secretWord }) => {
+  const [discoveredLetters, setDiscoveredLetters] = useState([]);
+  const [undiscoveredLetters, setUndiscoveredLetters] = useState(
+    new Set([...secretWord.split(" ").join("")])
+  );
+  const [wordDisplay, setWordDisplay] = useState([...secretWord]);
+  // ! consider letter casing,snake casing or any other casing in the original word
+  // ! consider spaces and how to deal with them
+  // ? how to handle words,a single word letters needs to be on the same line
+  // * 1)secret word : string - the original word the player has to guess
+  // * 2)lettersBox : array - starts as A-Z letters,every time the player clicks on a char tile
+  // todo  remove the letter from this array
+  // todo push this letters to usedLettersBox
+  // todo check if the letter is in secret word set
+  // todo true: push letter to secretWordDisplay
+  // todo false: add 1 to strikes
+  // todo finally: check if game is over(either no more strikes and then the game is lost,or the whole word is discovered and then the game is won)
+
   return (
     <Fragment>
       <Card>
-        <h2>Characters</h2>
+        <h2>{category}</h2>
       </Card>
-      <Card>The answer is...</Card>
-      <Card>_ _ _ _ _ _ _</Card>
+      <Card>The answer is...{secretWord}</Card>
       <Card>
-        {arr.map((char) => (
-          <div className={classes.tile}>{char}</div>
+        {wordDisplay.map((char) => (
+          <Tile char={char} />
+        ))}
+      </Card>
+      <Card>
+        {lettersBox.map((char) => (
+          <Tile char={char} />
         ))}
       </Card>
       <Card>
