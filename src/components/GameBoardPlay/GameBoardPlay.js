@@ -1,62 +1,7 @@
 import { Fragment, useState } from "react";
 import Card from "../../ui/Card";
 import Tile from "../Tile";
-import classes from "./GameBoardPlay.module.css";
-
-const lettersBox = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+import { lettersBox } from "./lettersBox";
 
 const GameBoardPlay = ({ category, secretWord }) => {
   const [discoveredLetters, setDiscoveredLetters] = useState([]);
@@ -75,7 +20,13 @@ const GameBoardPlay = ({ category, secretWord }) => {
   // todo true: push letter to secretWordDisplay
   // todo false: add 1 to strikes
   // todo finally: check if game is over(either no more strikes and then the game is lost,or the whole word is discovered and then the game is won)
-
+  // * 3) usedLettersBox : empty array - []
+  // * 4) discoveredLetters - empty array - []
+  // * 5) undiscoveredLetters - set of characters made from secretWord
+  const handleTileClick = (tileChar) => {
+    console.log(tileChar);
+  };
+  // todo split wordDisplay to a separate component
   return (
     <Fragment>
       <Card>
@@ -83,26 +34,27 @@ const GameBoardPlay = ({ category, secretWord }) => {
       </Card>
       <Card>The answer is...{secretWord}</Card>
       <Card>
+        <p>Word Display</p>
         {wordDisplay.map((char) => (
           <Tile char={char} />
         ))}
       </Card>
       <Card>
+        <p>unUsedLettersBox</p>
         {lettersBox.map((char) => (
-          <Tile char={char} />
+          <Tile
+            char={char}
+            handleClick={() => {
+              handleTileClick(char);
+            }}
+          />
         ))}
       </Card>
-      <Card>
-        <div className={classes.tile}>H</div>
-        <div className={classes.tile}>A</div>
-        <div className={classes.tile}>R</div>
-        <div className={classes.tile}>R</div>
-        <div className={classes.tile}>Y</div>
-      </Card>
+      <Card>usedLettersBox</Card>
     </Fragment>
   );
 };
 
-// TODO  tile should be a component
+// TODO  add keys
 
 export default GameBoardPlay;
