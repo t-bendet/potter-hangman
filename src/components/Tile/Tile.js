@@ -1,12 +1,15 @@
 import classes from "./Tile.module.css";
 
-// todo if char === " " return an invisible tile
-//  todo if char === null return a "_" tile
+// todo handle words grouping
 
-const Tile = ({ char }) => {
+const Tile = ({ char, handleClick }) => {
   const cla =
     char === " " ? `${classes.tile} ${classes.invisible}` : classes.tile;
-  return <p className={cla}>{char === " " ? "_" : char}</p>;
+  return (
+    <p className={cla} onClick={handleClick}>
+      {char ? char : "_"}
+    </p>
+  );
 };
 
 export default Tile;
