@@ -1,0 +1,10 @@
+.words {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.word {
+  display: flex;
+  padding: 0.5rem;
+}
