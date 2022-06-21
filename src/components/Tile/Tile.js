@@ -1,23 +1,18 @@
 import classes from "./Tile.module.css";
 
-// todo handle words grouping
-
 const Tile = ({ char, handleClick }) => {
+  const isClickHandled = () => {
+    if (handleClick) {
+      handleClick(char);
+      return;
+    }
+    return null;
+  };
   return (
-    <p className={classes.tile} onClick={handleClick}>
+    <p className={classes.tile} onClick={isClickHandled}>
       {char ? char : "_"}
     </p>
   );
 };
 
 export default Tile;
-
-// const Tile = ({ char, handleClick }) => {
-//   const cla =
-//     char === " " ? `${classes.tile} ${classes.invisible}` : classes.tile;
-//   return (
-//     <p className={cla} onClick={handleClick}>
-//       {char ? char : "_"}
-//     </p>
-//   );
-// };
