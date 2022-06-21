@@ -1,31 +1,41 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Card from "../../ui/Card";
 import Tile from "../Tile";
 import PhraseDisplay from "../PhraseDisplay";
-import { lettersBox } from "./lettersBox";
+import { LETTERS, MAX_STRIKES } from "./index";
 
 const GameBoardPlay = ({ category, secretWord }) => {
-  const [discoveredLetters, setDiscoveredLetters] = useState(["h", "r"]);
-  // ! consider letter casing,snake casing or any other casing in the original word
-  // ! consider spaces and how to deal with them
-  // ! secret word should be trimmed
+  const [matchedLetters, setMatchedLetters] = useState([]);
+  const [lettersBox, setLettersBox] = useState(LETTERS);
+  const [usedLettersBox, setUsedLettersBox] = useState([]);
+  const [strikes, setStrikes] = useState(0);
+  const secretWordSet = new Set([...secretWord]);
+  useEffect(() => {
+    if (strikes > MAX_STRIKES) {
+      console.log("YOU LOSERRRRRRRRRRRRRRRRRR");
+    }
+  }, [strikes]);
+  // ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed
   // ! consider special charecters inside a word ('....)
-  // * 1)secret word : string - the original word the player has to guess
-  // * 2)lettersBox : array - starts as A-Z letters,every time the player clicks on a char tile
-  // todo  remove the letter from this array
-  // todo push this letters to usedLettersBox
-  // todo check if the letter is in secret word set
-  // todo true: push letter to secretWordDisplay
-  // todo false: add 1 to strikes
-  // todo finally: check if game is over(either no more strikes and then the game is lost,or the whole word is discovered and then the game is won)
-  // * 3) usedLettersBox : empty array - []
-  // * 4) discoveredLetters - empty array - []
-  // * 5) undiscoveredLetters - set of characters made from secretWord
-  // todo move reusable states to context
-  // todo rethink variable names
   const handleTileClick = (tileChar) => {
-    console.log(tileChar);
+    const i = lettersBox.indexOf(tileChar);
+    const newLettersBox = [...lettersBox];
+    newLettersBox.splice(i, 1);
+    setLettersBox(newLettersBox);
+    setUsedLettersBox([...usedLettersBox, tileChar]);
+    const lowerTileChar = tileChar.toLowerCase();
+    if (secretWordSet.has(lowerTileChar)) {
+      setMatchedLetters([...matchedLetters, lowerTileChar]);
+      // ? some kind of counter?,animation? who knows...
+    } else {
+      setStrikes((prev) => prev + 1);
+      // ? animation
+    }
+    // todo check if the whole word is discovered and then the game is won)
+    // * effect
   };
+  // todo move reusable states to context
+  // todo
   return (
     <Fragment>
       <Card>
@@ -34,24 +44,24 @@ const GameBoardPlay = ({ category, secretWord }) => {
       <Card>The answer is...{secretWord}</Card>
       <PhraseDisplay
         secretWord={secretWord}
-        discoveredLetters={discoveredLetters}
+        matchedLetters={matchedLetters}
       ></PhraseDisplay>
       <Card>
-        <p>unUsedLettersBox</p>
         {lettersBox.map((char) => (
           <Tile
             char={char}
-            handleClick={() => {
-              handleTileClick(char);
-            }}
+            handleClick={handleTileClick}
+            key={`lettersBox-${char}`}
           />
         ))}
       </Card>
-      <Card>usedLettersBox</Card>
+      <Card>
+        {usedLettersBox.map((char) => (
+          <Tile char={char} key={`usedLettersBox-${char}`} />
+        ))}
+      </Card>
     </Fragment>
   );
 };
-
-// TODO  add keys
 
 export default GameBoardPlay;
