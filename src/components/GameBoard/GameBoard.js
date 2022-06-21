@@ -13,7 +13,7 @@ const GameBoard = () => {
       <Panel>
         <GameBoardPlay
           category="Characters"
-          secretWord="Harry Potter"
+          secretWord="harry potter and the philosopher's stone"
         ></GameBoardPlay>
       </Panel>
     </div>

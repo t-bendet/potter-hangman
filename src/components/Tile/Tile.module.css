@@ -10,7 +10,3 @@
   height: 2rem;
   margin: 5px;
 }
-
-.invisible {
-  z-index: -45;
-}
