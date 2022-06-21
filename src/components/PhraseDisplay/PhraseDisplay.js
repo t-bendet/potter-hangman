@@ -1,13 +1,14 @@
 import Card from "../../ui/Card";
 import Tile from "../Tile";
 import classes from "./PhraseDisplay.module.css";
-
-const PhraseDisplay = ({ secretWord, discoveredLetters }) => {
+// TODO  add keys
+// todo move logic to context
+const PhraseDisplay = ({ secretWord, matchedLetters }) => {
   const renderPhrase = () => {
     const wordsArray = secretWord.split(" ").map((word) => [...word]);
     const concealWord = (wordArray) => {
       return wordArray.map((char) =>
-        discoveredLetters.includes(char) ? char : null
+        matchedLetters.includes(char) ? char : null
       );
     };
     const concealedWordsArray = wordsArray.map(concealWord);
