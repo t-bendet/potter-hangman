@@ -28,5 +28,3 @@ export const LETTERS = [
   "Y",
   "Z",
 ];
-
-export const MAX_STRIKES = 2;
