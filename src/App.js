@@ -1,6 +1,7 @@
 import Card from "./ui/Card";
 import GameBoard from "./components/GameBoard";
 import classes from "./app.module.css";
+import { GamePlayContextProvider } from "./store/Game-play-context";
 
 const Modal = () => {
   return (
@@ -36,10 +37,12 @@ const Modal = () => {
 
 function App() {
   return (
-    <div className={classes.app}>
-      {false && <Modal />}
-      {true && <GameBoard />}
-    </div>
+    <GamePlayContextProvider>
+      <div className={classes.app}>
+        {false && <Modal />}
+        {true && <GameBoard />}
+      </div>
+    </GamePlayContextProvider>
   );
 }
 

@@ -1,10 +1,12 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
+import GamePlayContext from "../../store/Game-play-context";
 import Card from "../../ui/Card";
 import Tile from "../Tile";
 import PhraseDisplay from "../PhraseDisplay";
 import { LETTERS, MAX_STRIKES } from "./index";
 
-const GameBoardPlay = ({ category, secretWord }) => {
+const GameBoardPlay = ({ category }) => {
+  const { secretWord } = useContext(GamePlayContext);
   const [matchedLetters, setMatchedLetters] = useState([]);
   const [lettersBox, setLettersBox] = useState(LETTERS);
   const [usedLettersBox, setUsedLettersBox] = useState([]);
@@ -19,11 +21,18 @@ const GameBoardPlay = ({ category, secretWord }) => {
   // ! consider special charecters inside a word ('....)
   const handleTileClick = (tileChar) => {
     const i = lettersBox.indexOf(tileChar);
+    console.log(i);
     const newLettersBox = [...lettersBox];
+    console.log(newLettersBox);
     newLettersBox.splice(i, 1);
+    console.log(newLettersBox);
+    console.log(matchedLetters);
+
     setLettersBox(newLettersBox);
     setUsedLettersBox([...usedLettersBox, tileChar]);
     const lowerTileChar = tileChar.toLowerCase();
+    console.log(lowerTileChar);
+    console.log(secretWordSet);
     if (secretWordSet.has(lowerTileChar)) {
       setMatchedLetters([...matchedLetters, lowerTileChar]);
       // ? some kind of counter?,animation? who knows...
@@ -42,10 +51,7 @@ const GameBoardPlay = ({ category, secretWord }) => {
         <h2>{category}</h2>
       </Card>
       <Card>The answer is...{secretWord}</Card>
-      <PhraseDisplay
-        secretWord={secretWord}
-        matchedLetters={matchedLetters}
-      ></PhraseDisplay>
+      <PhraseDisplay matchedLetters={matchedLetters}></PhraseDisplay>
       <Card>
         {lettersBox.map((char) => (
           <Tile
