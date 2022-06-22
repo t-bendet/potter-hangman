@@ -1,6 +1,7 @@
 import Card from "./ui/Card";
 import GameBoard from "./components/GameBoard";
 import classes from "./app.module.css";
+import { GamePlayContextProvider } from "./store/Game-play-context";
 
 const Modal = () => {
   return (
@@ -33,13 +34,15 @@ const Modal = () => {
     </Card>
   );
 };
-
+// TODO add util for formatting secret word string
 function App() {
   return (
-    <div className={classes.app}>
-      {false && <Modal />}
-      {true && <GameBoard />}
-    </div>
+    <GamePlayContextProvider>
+      <div className={classes.app}>
+        {false && <Modal />}
+        {true && <GameBoard />}
+      </div>
+    </GamePlayContextProvider>
   );
 }
 
