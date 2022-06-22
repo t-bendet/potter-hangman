@@ -5,13 +5,13 @@ import Tile from "../Tile";
 import classes from "./PhraseDisplay.module.css";
 // TODO  add keys
 // todo move logic to context
-const PhraseDisplay = ({ matchedLetters }) => {
-  const { secretWord } = useContext(GamePlayContext);
+const PhraseDisplay = () => {
+  const ctx = useContext(GamePlayContext);
   const renderPhrase = () => {
-    const wordsArray = secretWord.split(" ").map((word) => [...word]);
+    const wordsArray = ctx.secretWord.split(" ").map((word) => [...word]);
     const concealWord = (wordArray) => {
       return wordArray.map((char) =>
-        matchedLetters.includes(char) ? char : null
+        ctx.matchedLetters.includes(char) ? char : null
       );
     };
     const concealedWordsArray = wordsArray.map(concealWord);
