@@ -16,7 +16,7 @@ const GameBoardPlay = ({ category }) => {
     setLettersBox(newLettersBox);
     setUsedLettersBox([...usedLettersBox, tileChar]);
     const lowerTileChar = tileChar.toLowerCase();
-    ctx.checkChar(lowerTileChar);
+    ctx.updateGameProgress(lowerTileChar);
   };
 
   return (
