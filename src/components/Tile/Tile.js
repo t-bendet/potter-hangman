@@ -1,7 +1,7 @@
 import classes from "./Tile.module.css";
 
 const Tile = ({ char, handleClick }) => {
-  const isClickHandled = () => {
+  const shouldClickBeHandled = () => {
     if (handleClick) {
       handleClick(char);
       return;
@@ -9,7 +9,7 @@ const Tile = ({ char, handleClick }) => {
     return null;
   };
   return (
-    <p className={classes.tile} onClick={isClickHandled}>
+    <p className={classes.tile} onClick={shouldClickBeHandled}>
       {char ? char : "_"}
     </p>
   );
