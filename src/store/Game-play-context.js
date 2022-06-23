@@ -7,8 +7,9 @@ const GamePlayContext = React.createContext({
 });
 // ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed
 // ! consider special charecters inside a word ('....)
+// ? should secret word be an array and not a string from the start? or array of objects with id's?
 export const GamePlayContextProvider = (props) => {
-  const [secretWord, setSecretWord] = useState("harry");
+  const [secretWord, setSecretWord] = useState("harry potter");
   const [matchedLetters, setMatchedLetters] = useState([]);
   const [strikes, setStrikes] = useState(0);
   const secretWordSet = new Set([...secretWord]);

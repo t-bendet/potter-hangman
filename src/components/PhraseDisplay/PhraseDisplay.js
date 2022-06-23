@@ -4,7 +4,7 @@ import Card from "../../ui/Card";
 import Tile from "../Tile";
 import classes from "./PhraseDisplay.module.css";
 // TODO  add keys
-// todo move logic to context
+
 const PhraseDisplay = () => {
   const ctx = useContext(GamePlayContext);
   const renderPhrase = () => {
