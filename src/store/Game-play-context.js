@@ -5,21 +5,23 @@ const MAX_STRIKES = 2;
 const GamePlayContext = React.createContext({
   secretWord: "",
 });
-// ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed
-// ! consider special charecters inside a word ('....)
+// ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed,consider special charecters inside a word ('....)
+// ? should secret word be an array and not a string from the start? or array of objects with id's?
+// TODO turn GamePlayContextProvider state into a reducer
 export const GamePlayContextProvider = (props) => {
-  const [secretWord, setSecretWord] = useState("harry");
+  const [secretWord, setSecretWord] = useState("harry potter");
   const [matchedLetters, setMatchedLetters] = useState([]);
   const [strikes, setStrikes] = useState(0);
-  const secretWordSet = new Set([...secretWord]);
-  const checkChar = (tileChar) => {
+  const secretWordSet = new Set([...secretWord.replace(/\s/g, "")]);
+  const updateGameProgress = (tileChar) => {
     if (secretWordSet.has(tileChar)) {
       setMatchedLetters((prev) => {
         const newMatchedLetters = [...prev, tileChar];
-        const isGameWon = [...secretWordSet].every((char) =>
+        const isWholePhraseMatched = [...secretWordSet].every((char) =>
           newMatchedLetters.includes(char)
         );
-        if (isGameWon) {
+        console.log(isWholePhraseMatched);
+        if (isWholePhraseMatched) {
           console.log("yhahhahahahahha");
         }
         return newMatchedLetters;
@@ -43,7 +45,7 @@ export const GamePlayContextProvider = (props) => {
         matchedLetters,
         strikes,
         secretWordSet,
-        checkChar,
+        updateGameProgress,
       }}
     >
       {props.children}
