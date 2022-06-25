@@ -5,6 +5,8 @@ const MAX_STRIKES = 2;
 const GamePlayContext = React.createContext({
   secretWord: "",
 });
+
+// TODO add animation
 // ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed,consider special charecters inside a word ('....)
 // ? should secret word be an array and not a string from the start? or array of objects with id's?
 // TODO turn GamePlayContextProvider state into a reducer
