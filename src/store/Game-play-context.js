@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const MAX_STRIKES = 2;
 
@@ -6,15 +6,20 @@ const GamePlayContext = React.createContext({
   secretWord: "",
 });
 
+const removeSpecialCharacters = (str) => str.replace(/[^a-zA-Z0-9 ]/g, "");
+const removeSpaces = (str) => str.replace(/\s/g, "");
+
 // TODO add animation
-// ! consider letter casing,snake casing or any other casing in the original word,secret word should be trimmed,consider special charecters inside a word ('....)
 // ? should secret word be an array and not a string from the start? or array of objects with id's?
 // TODO turn GamePlayContextProvider state into a reducer
 export const GamePlayContextProvider = (props) => {
-  const [secretWord, setSecretWord] = useState("harry potter");
+  const [secretWord, setSecretWord] = useState("");
   const [matchedLetters, setMatchedLetters] = useState([]);
   const [strikes, setStrikes] = useState(0);
-  const secretWordSet = new Set([...secretWord.replace(/\s/g, "")]);
+  const secretWordSet = new Set([...removeSpaces(secretWord)]);
+  useEffect(() => {
+    setSecretWord(removeSpecialCharacters("harry potter"));
+  }, []);
   const updateGameProgress = (tileChar) => {
     if (secretWordSet.has(tileChar)) {
       setMatchedLetters((prev) => {
@@ -22,7 +27,6 @@ export const GamePlayContextProvider = (props) => {
         const isWholePhraseMatched = [...secretWordSet].every((char) =>
           newMatchedLetters.includes(char)
         );
-        console.log(isWholePhraseMatched);
         if (isWholePhraseMatched) {
           console.log("yhahhahahahahha");
         }
