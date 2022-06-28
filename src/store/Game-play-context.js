@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 
 const MAX_STRIKES = 2;
 
@@ -9,48 +9,72 @@ const GamePlayContext = React.createContext({
 const removeSpecialCharacters = (str) => str.replace(/[^a-zA-Z0-9 ]/g, "");
 const removeSpaces = (str) => str.replace(/\s/g, "");
 
-// TODO add animation
+const initializeState = () => ({
+  secretWord: removeSpecialCharacters("harry potter"),
+  matchedLetters: [],
+  strikes: 0,
+  secretWordSet: new Set([...removeSpaces("harry potter")]),
+});
+
+const initialGameStatus = {
+  secretWord: "",
+  matchedLetters: [],
+  strikes: 0,
+};
+
+const clickReducer = (state, action) => {
+  if (action.type === "CHAR_MATCH") {
+    return {
+      ...state,
+      matchedLetters: [...state.matchedLetters, action.value],
+    };
+  }
+  if (action.type === "CHAR_MISS") {
+    return {
+      ...state,
+      strikes: state.strikes + 1,
+    };
+  }
+  return state;
+};
+
 // ? should secret word be an array and not a string from the start? or array of objects with id's?
-// TODO turn GamePlayContextProvider state into a reducer
 export const GamePlayContextProvider = (props) => {
-  const [secretWord, setSecretWord] = useState("");
-  const [matchedLetters, setMatchedLetters] = useState([]);
-  const [strikes, setStrikes] = useState(0);
-  const secretWordSet = new Set([...removeSpaces(secretWord)]);
+  const [gameState, dispatchClick] = useReducer(
+    clickReducer,
+    initialGameStatus,
+    initializeState
+  );
   useEffect(() => {
-    setSecretWord(removeSpecialCharacters("harry potter"));
-  }, []);
+    if (gameState.strikes > MAX_STRIKES) {
+      console.log("YOU LOSERRRRRRRRRRRRRRRRRR");
+    }
+    const isWholePhraseMatched = [...gameState.secretWordSet].every((char) =>
+      gameState.matchedLetters.includes(char)
+    );
+    if (isWholePhraseMatched && gameState.matchedLetters.length) {
+      console.log("yhahhahahahahha");
+    }
+  }, [gameState]);
   const updateGameProgress = (tileChar) => {
-    if (secretWordSet.has(tileChar)) {
-      setMatchedLetters((prev) => {
-        const newMatchedLetters = [...prev, tileChar];
-        const isWholePhraseMatched = [...secretWordSet].every((char) =>
-          newMatchedLetters.includes(char)
-        );
-        if (isWholePhraseMatched) {
-          console.log("yhahhahahahahha");
-        }
-        return newMatchedLetters;
+    if (gameState.secretWordSet.has(tileChar)) {
+      dispatchClick({
+        type: "CHAR_MATCH",
+        value: tileChar,
       });
-      // * some kind of counter?,animation? who knows...
     } else {
-      setStrikes((prev) => {
-        const newStrikes = prev + 1;
-        if (newStrikes > MAX_STRIKES) {
-          console.log("YOU LOSERRRRRRRRRRRRRRRRRR");
-        }
-        return newStrikes;
+      dispatchClick({
+        type: "CHAR_MISS",
       });
-      // * animation
     }
   };
   return (
     <GamePlayContext.Provider
       value={{
-        secretWord,
-        matchedLetters,
-        strikes,
-        secretWordSet,
+        secretWord: gameState.secretWord,
+        matchedLetters: gameState.matchedLetters,
+        strikes: gameState.strikes,
+        secretWordSet: gameState.secretWordSet,
         updateGameProgress,
       }}
     >
@@ -60,3 +84,14 @@ export const GamePlayContextProvider = (props) => {
 };
 
 export default GamePlayContext;
+
+// if (newStrikes > MAX_STRIKES) {
+// }
+// return newStrikes;
+
+// const isWholePhraseMatched = [...secretWordSet].every((char) =>
+// gameState.matchedLetters.includes(char)
+// );
+// if (isWholePhraseMatched) {
+// console.log("yhahhahahahahha");
+// }

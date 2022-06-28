@@ -3,7 +3,6 @@ import GamePlayContext from "../../store/Game-play-context";
 import Card from "../../ui/Card";
 import Tile from "../Tile";
 import classes from "./PhraseDisplay.module.css";
-// TODO  add keys
 
 const PhraseDisplay = () => {
   const ctx = useContext(GamePlayContext);
@@ -15,11 +14,13 @@ const PhraseDisplay = () => {
       );
     };
     const concealedWordsArray = wordsArray.map(concealWord);
-    const renderWords = concealedWordsArray.map((word) => {
+    const renderWords = concealedWordsArray.map((word, i) => {
       return (
-        <div className={classes.word}>
-          {word.map((char) => {
-            return <Tile char={char}></Tile>;
+        <div className={classes.word} key={`${word}-${i}`}>
+          {word.map((char, index) => {
+            return (
+              <Tile char={char} key={`phraseDisplay-${char}-${index}`}></Tile>
+            );
           })}
         </div>
       );

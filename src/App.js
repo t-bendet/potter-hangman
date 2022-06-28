@@ -34,7 +34,7 @@ const Modal = () => {
     </Card>
   );
 };
-// TODO add util for formatting secret word string
+
 function App() {
   return (
     <GamePlayContextProvider>
