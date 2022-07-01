@@ -1,14 +1,14 @@
-import { Fragment } from "react";
 import AvatarAnimation from "../AvatarAnimation/";
 import HangmanAnimation from "../HangmanAnimation";
+import Panel from "../../ui/Panel";
 
 const GameBoardAnimation = () => {
   return (
-    <Fragment>
+    <Panel>
       <h1>Game Board Animation </h1>
       <HangmanAnimation>Hangman Animation</HangmanAnimation>
       <AvatarAnimation></AvatarAnimation>
-    </Fragment>
+    </Panel>
   );
 };
 

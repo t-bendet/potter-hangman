@@ -1,11 +1,12 @@
-import { Fragment, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import GamePlayContext from "../../store/Game-play-context";
 import Card from "../../ui/Card";
-import Tile from "../Tile";
+import Panel from "../../ui/Panel";
 import PhraseDisplay from "../PhraseDisplay";
+import LettersBox from "../LettersBox";
 import { LETTERS } from "./index";
 
-const GameBoardPlay = ({ category }) => {
+const GameBoardPlay = (props) => {
   const ctx = useContext(GamePlayContext);
   const [lettersBox, setLettersBox] = useState(LETTERS);
   const [usedLettersBox, setUsedLettersBox] = useState([]);
@@ -20,27 +21,21 @@ const GameBoardPlay = ({ category }) => {
   };
 
   return (
-    <Fragment>
+    <Panel>
       <Card>
-        <h2>{category}</h2>
+        <h2>{ctx.category}</h2>
       </Card>
-      <Card>The answer is...{ctx.secretWord}</Card>
+      <Card>
+        <h3>The answer is...{ctx.secretWord}</h3>
+      </Card>
       <PhraseDisplay></PhraseDisplay>
-      <Card>
-        {lettersBox.map((char) => (
-          <Tile
-            char={char}
-            handleClick={onTileClick}
-            key={`lettersBox-${char}`}
-          />
-        ))}
-      </Card>
-      <Card>
-        {usedLettersBox.map((char) => (
-          <Tile char={char} key={`usedLettersBox-${char}`} />
-        ))}
-      </Card>
-    </Fragment>
+      <LettersBox
+        letters={lettersBox}
+        onTileClick={onTileClick}
+        prefix="lettersBox"
+      ></LettersBox>
+      <LettersBox letters={usedLettersBox} prefix="usedLettersBox"></LettersBox>
+    </Panel>
   );
 };
 
