@@ -14,6 +14,7 @@ const initializeState = () => ({
   matchedLetters: [],
   strikes: 0,
   secretWordSet: new Set([...removeSpaces("harry potter")]),
+  category: "Characters",
 });
 
 const initialGameStatus = {
@@ -53,7 +54,7 @@ export const GamePlayContextProvider = (props) => {
       gameState.matchedLetters.includes(char)
     );
     if (isWholePhraseMatched && gameState.matchedLetters.length) {
-      console.log("yhahhahahahahha");
+      console.log("Yhahhahahahahha You Wonnnn");
     }
   }, [gameState]);
   const updateGameProgress = (tileChar) => {
@@ -75,6 +76,7 @@ export const GamePlayContextProvider = (props) => {
         matchedLetters: gameState.matchedLetters,
         strikes: gameState.strikes,
         secretWordSet: gameState.secretWordSet,
+        category: gameState.category,
         updateGameProgress,
       }}
     >
@@ -84,14 +86,3 @@ export const GamePlayContextProvider = (props) => {
 };
 
 export default GamePlayContext;
-
-// if (newStrikes > MAX_STRIKES) {
-// }
-// return newStrikes;
-
-// const isWholePhraseMatched = [...secretWordSet].every((char) =>
-// gameState.matchedLetters.includes(char)
-// );
-// if (isWholePhraseMatched) {
-// console.log("yhahhahahahahha");
-// }

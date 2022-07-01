@@ -6,8 +6,8 @@ import { GamePlayContextProvider } from "./store/Game-play-context";
 const Modal = () => {
   return (
     <Card>
-      <div className="max-w-2xl">
-        <h1 className="text-4xl">Hangman</h1>
+      <div>
+        <h1>Hangman</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl
           eros, pulvinar facilisis justo mollis, auctor consequat urna. Morbi a
