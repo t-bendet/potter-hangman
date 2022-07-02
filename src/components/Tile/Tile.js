@@ -1,5 +1,7 @@
 import classes from "./Tile.module.css";
 
+// todo replace should click be handled with || null
+
 const Tile = ({ char, handleClick }) => {
   const shouldClickBeHandled = () => {
     if (handleClick) {

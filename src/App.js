@@ -1,45 +1,13 @@
-import Card from "./ui/Card";
 import GameBoard from "./components/GameBoard";
 import classes from "./app.module.css";
 import { GamePlayContextProvider } from "./store/Game-play-context";
-
-const Modal = () => {
-  return (
-    <Card>
-      <div>
-        <h1>Hangman</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl
-          eros, pulvinar facilisis justo mollis, auctor consequat urna. Morbi a
-          bibendum metus. Donec scelerisque sollicitudin enim eu venenatis. Duis
-          tincidunt laoreet ex, in pretium orci vestibulum eget. Class aptent
-          taciti sociosqu ad litora torquent
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl
-          eros, pulvinar facilisis justo mollis, auctor consequat urna. Morbi a
-          bibendum metus. Donec scelerisque sollicitudin enim eu venenatis. Duis
-          tincidunt laoreet ex, in pretium orci vestibulum eget. Class aptent
-          taciti sociosqu ad litora torquent
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl
-          eros, pulvinar facilisis justo mollis, auctor consequat urna. Morbi a
-          bibendum metus. Donec scelerisque sollicitudin enim eu venenatis. Duis
-          tincidunt laoreet ex, in pretium orci vestibulum eget. Class aptent
-          taciti sociosqu ad litora torquent
-        </p>
-        <button>Start</button>
-      </div>
-    </Card>
-  );
-};
+import Modal from "./ui/Modal/Modal";
 
 function App() {
   return (
     <GamePlayContextProvider>
       <div className={classes.app}>
-        {false && <Modal />}
+        {false && <Modal title="Modal Title" message="Modal message" />}
         {true && <GameBoard />}
       </div>
     </GamePlayContextProvider>
