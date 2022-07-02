@@ -4,26 +4,25 @@
 
 ## Components
 
-- [ ] Game Board
-- [ ] Avatar box
-- [ ] Category box
+- [x] Game Board
+- [x] Avatar box
+- [x] Category box
 - [ ] Icons Bar
-- [ ] Hangman
-- [ ] Floating Avatar
-- [ ] Answer
-- [ ] Mystery Word
-- [ ] Letters box
-- [ ] Used letters box
+- [x] Hangman
+- [x] Floating Avatar
+- [x] Answer
+- [x] Mystery Word
+- [x] Letters box
+- [x] Used letters box
 - [ ] Welcome screen
 
 ## UI Components
 
-- [ ] Backdrop
-- [ ] Modal
-- [ ] Card
+- [x] Backdrop
+- [x] Modal
+- [x] Card
 - [ ] carousel
-- [ ] Button
-- [ ]
+- [x] Button
 
 ## features
 
