@@ -5,8 +5,7 @@ import Panel from "../../ui/Panel";
 const GameBoardAnimation = () => {
   return (
     <Panel>
-      <h1>Game Board Animation </h1>
-      <HangmanAnimation>Hangman Animation</HangmanAnimation>
+      <HangmanAnimation></HangmanAnimation>
       <AvatarAnimation></AvatarAnimation>
     </Panel>
   );
