@@ -3,6 +3,8 @@ import classes from "./app.module.css";
 import { GamePlayContextProvider } from "./store/Game-play-context";
 import Modal from "./ui/Modal/Modal";
 
+// todo redo css flex and grids - overflowing
+
 function App() {
   return (
     <GamePlayContextProvider>
