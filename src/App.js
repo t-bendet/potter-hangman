@@ -11,8 +11,8 @@ function App() {
       <div className={classes.app}>
         {isModalOpen && (
           <Modal
-            title="Modal Title"
-            message="Modal message"
+            title="Welcome to harry potter hang man bla bla"
+            message="Pick A Catagorie....."
             onConfirm={() => setIsModalOpen(false)}
           />
         )}
