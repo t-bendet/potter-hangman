@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
+import ReactDOM from "react-dom";
+import Carousel from "../../components/Carousel/Carousel";
 import Card from "../Card";
 import Button from "../Button";
 import classes from "./Modal.module.css";
-import ReactDOM from "react-dom";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onConfirm} />;
@@ -17,6 +18,7 @@ const ModalOverlay = (props) => {
       <div className={classes.content}>
         <p>{props.message}</p>
       </div>
+      <Carousel />
       <footer className={classes.actions}>
         <Button onClick={props.onConfirm || null}>Okay</Button>
       </footer>

@@ -15,16 +15,17 @@
   width: 80%;
   z-index: 100;
   overflow: hidden;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
-  background: #4f005f;
+  /* background: #4f005f; */
   padding: 1rem;
 }
 
 .header h2 {
   margin: 0;
-  color: white;
 }
 
 .content {
@@ -35,11 +36,4 @@
   padding: 1rem;
   display: flex;
   justify-content: flex-end;
-}
-
-@media (min-width: 768px) {
-  .modal {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
 }
