@@ -4,18 +4,16 @@ import classes from "./app.module.css";
 import { GamePlayContextProvider } from "./store/Game-play-context";
 import Modal from "./ui/Modal/Modal";
 
+// todo redux
+// todo mobile first
+// todo opening screen
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <GamePlayContextProvider>
       <div className={classes.app}>
-        {isModalOpen && (
-          <Modal
-            title="Welcome to harry potter hang man bla bla"
-            message="Pick A Catagorie....."
-            onConfirm={() => setIsModalOpen(false)}
-          />
-        )}
+        {isModalOpen && <Modal onConfirm={() => setIsModalOpen(false)} />}
         {true && <GameBoard />}
       </div>
     </GamePlayContextProvider>

@@ -1,7 +1,5 @@
 import slides from "../../tempMedia/slides";
 
-console.log(slides);
-
 const Carousel = (props) => {
   const renderSlides = () => {
     return slides.map((cat) => {
@@ -11,7 +9,7 @@ const Carousel = (props) => {
           <img
             src={cat.img}
             alt=""
-            style={{ height: "60px", width: "80px" }}
+            style={{ height: "240px", width: "320px" }}
           ></img>
           <p>{cat.description}</p>
         </div>
@@ -27,7 +25,6 @@ const Carousel = (props) => {
         gap: "10px",
       }}
     >
-      <p>I'm gonna be a carousel when i grow up!</p>
       {renderSlides()}
     </div>
   );
