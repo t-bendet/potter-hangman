@@ -4,9 +4,9 @@ import classes from "./app.module.css";
 import { GamePlayContextProvider } from "./store/Game-play-context";
 import Modal from "./ui/Modal/Modal";
 
-// todo redux
-// todo mobile first
-// todo opening screen
+// TODO redux
+// TODO mobile first
+// TODO opening screen
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -14,7 +14,7 @@ function App() {
     <GamePlayContextProvider>
       <div className={classes.app}>
         {isModalOpen && <Modal onConfirm={() => setIsModalOpen(false)} />}
-        {true && <GameBoard />}
+        <GameBoard />
       </div>
     </GamePlayContextProvider>
   );

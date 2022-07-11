@@ -1,15 +1,21 @@
 import Card from "../../ui/Card";
 import Tile from "../Tile";
-
-// todo add ul and li
-// todo add css
+import classes from "./LettersBox.module.css";
 
 const LettersBox = ({ letters, onTileClick, prefix }) => {
   return (
     <Card>
-      {letters.map((char) => (
-        <Tile char={char} handleClick={onTileClick} key={`${prefix}-${char}`} />
-      ))}
+      <ul className={classes.list}>
+        {letters.map((char) => (
+          <li>
+            <Tile
+              char={char}
+              handleClick={onTileClick}
+              key={`${prefix}-${char}`}
+            />
+          </li>
+        ))}
+      </ul>
     </Card>
   );
 };
