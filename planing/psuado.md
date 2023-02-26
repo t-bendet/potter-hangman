@@ -42,3 +42,5 @@
 14. letters focus on user click or keyboard event(on hover too)
 15. timer
 16. user can choose an avatar
+17. avatar selection changes the site Theme (colors by House ,avatar animation(maybe also phrases for each stage?.... ),and different hangman animation for each avatar)
+    plan 2 very basic examples and start from there
