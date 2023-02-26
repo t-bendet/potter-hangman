@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import GameBoard from "./components/GameBoard";
-import classes from "./app.module.css";
 import { GamePlayContextProvider } from "./store/Game-play-context";
-import Modal from "./ui/Modal/Modal";
+import GameBoard from "./components/GameBoard";
+import WelcomeModal from "./components/WelcomeModal";
+import classes from "./app.module.css";
 
 // TODO redux
 // TODO mobile first
 // TODO opening screen
 
 function App() {
+  // * opens on first load only
   const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <GamePlayContextProvider>
       <div className={classes.app}>
-        {isModalOpen && <Modal onConfirm={() => setIsModalOpen(false)} />}
         <GameBoard />
+        {isModalOpen && (
+          <WelcomeModal onConfirm={() => setIsModalOpen(false)} />
+        )}
       </div>
     </GamePlayContextProvider>
   );
